@@ -1,8 +1,12 @@
-##YelpCampV2
+### YelpCampV2
 
 * Add Landing Page
 * Add Campgrounds Page that lists all campgrounds
 
 Each Campground has:
 * Name 
-* Image# YelpCampV2
+* Image
+
+### Layout and Basic Styling
+* Create our header and footer partials
+* Add in Bootstrap

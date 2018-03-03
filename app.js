@@ -11,23 +11,25 @@ app.set("view engine", "ejs");
 
 let campgroundSchema = new mongoose.Schema({
   name: String,
-  image: String
+  image: String,
+  description: String
 });
 
 let Campground = mongoose.model("Campground", campgroundSchema)
 
-// Campground.create(
-//   { 
-//     name: "Granit Hill", 
-//     image: "https://pixabay.com/get/ec31b90f2af61c2ad65a5854ee4d459fe270e7c818b410489df4c77da6ea_340.jpg" 
-//   }, function(err, campground) {
-//       if(err){
-//         console.log(err);
-//       } else {
-//         console.log("NEWLY CREATED COMPGROUND: ");
-//         console.log(campground);
-//       }
-//   });
+Campground.create(
+  { 
+    name: "Granit Hill", 
+    image: "https://pixabay.com/get/e136b80728f31c2ad65a5854ee4d459fe270e7c818b4134195f4c47ea3e8_340.jpg",
+    description: "This is a huge granite hill, no bathrooms, no water, beautiful granite!" 
+  }, function(err, campground) {
+      if(err){
+        console.log(err);
+      } else {
+        console.log("NEWLY CREATED COMPGROUND: ");
+        console.log(campground);
+      }
+  });
 
 // let campgrounds = [
 //   { name: "Salmon Creek", image: "https://pixabay.com/get/e136b80728f31c2ad65a5854ee4d459fe270e7c818b410489df4c77da6ea_340.jpg" },
@@ -40,7 +42,7 @@ app.get("/", function(req, res) {
   res.render("landing")
 });
 
-// Shows All The Campgrounds
+// INDEX ROUTE - Shows All The Campgrounds
 app.get("/campgrounds", function(req, res) {
   // Get all campgrounds from DB
   Campground.find({}, function(err, allCampgrounds){
@@ -52,7 +54,7 @@ app.get("/campgrounds", function(req, res) {
   })
 });
 
-// Create a New Campground
+// CREATE ROUTE - Create a New Campground
 app.post("/campgrounds", function(req, res) {
   // get data from form and add to campgrounds array
   let name = req.body.name;
@@ -69,9 +71,16 @@ app.post("/campgrounds", function(req, res) {
   })
 });
 
-// Shows Form 
+// NEW ROUTE - Shows Form to create new campground
 app.get("/campgrounds/new", function(req, res) {
   res.render("new.ejs");
+});
+
+// SHOW ROUTE -
+app.get("/campgrounds/:id", function(req, res) {
+  // find the campground with provided ID
+  // render show template with that campground
+  res.send("This will be the show page");
 });
 
 // Starts server on Port: 3000

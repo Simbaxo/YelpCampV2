@@ -17,19 +17,19 @@ let campgroundSchema = new mongoose.Schema({
 
 let Campground = mongoose.model("Campground", campgroundSchema)
 
-Campground.create(
-  { 
-    name: "Granit Hill", 
-    image: "https://pixabay.com/get/e136b80728f31c2ad65a5854ee4d459fe270e7c818b4134195f4c47ea3e8_340.jpg",
-    description: "This is a huge granite hill, no bathrooms, no water, beautiful granite!" 
-  }, function(err, campground) {
-      if(err){
-        console.log(err);
-      } else {
-        console.log("NEWLY CREATED COMPGROUND: ");
-        console.log(campground);
-      }
-  });
+// Campground.create(
+//   { 
+//     name: "Granit Hill", 
+//     image: "https://pixabay.com/get/e136b80728f31c2ad65a5854ee4d459fe270e7c818b4134195f4c47ea3e8_340.jpg",
+//     description: "This is a huge granite hill, no bathrooms, no water, beautiful granite!" 
+//   }, function(err, campground) {
+//       if(err){
+//         console.log(err);
+//       } else {
+//         console.log("NEWLY CREATED COMPGROUND: ");
+//         console.log(campground);
+//       }
+//   });
 
 // let campgrounds = [
 //   { name: "Salmon Creek", image: "https://pixabay.com/get/e136b80728f31c2ad65a5854ee4d459fe270e7c818b410489df4c77da6ea_340.jpg" },
@@ -49,7 +49,7 @@ app.get("/campgrounds", function(req, res) {
     if(err) {
       console.log(err);
     } else {
-      res.render("campgrounds", { campgrounds: allCampgrounds });
+      res.render("index", { campgrounds: allCampgrounds });
     }
   })
 });
@@ -59,7 +59,8 @@ app.post("/campgrounds", function(req, res) {
   // get data from form and add to campgrounds array
   let name = req.body.name;
   let image = req.body.image;
-  let newCampground = {name: name, image: image};
+  let desc = req.body.description;
+  let newCampground = {name: name, image: image, description: desc};
   // Create a new campground and save to DB
   Campground.create(newCampground, function(err, newlyCreated) {
     if(err) {
@@ -73,14 +74,20 @@ app.post("/campgrounds", function(req, res) {
 
 // NEW ROUTE - Shows Form to create new campground
 app.get("/campgrounds/new", function(req, res) {
-  res.render("new.ejs");
+  res.render("new");
 });
 
-// SHOW ROUTE -
+// SHOW ROUTE - Shows more info about Campground
 app.get("/campgrounds/:id", function(req, res) {
   // find the campground with provided ID
-  // render show template with that campground
-  res.send("This will be the show page");
+  Campground.findById(req.params.id, function(err, foundCampground) {
+    if(err) {
+      console.log(err);
+    } else {
+      // render show template with that campground
+      res.render("show", {campground: foundCampground});
+    }
+  });
 });
 
 // Starts server on Port: 3000

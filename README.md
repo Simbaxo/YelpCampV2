@@ -73,3 +73,8 @@ Each Campground has:
 ### Add User Model
 * Install all packages needed for auth
 * Define User model
+
+### Auth - Register
+* Configure Passport
+* Add register routes
+* Add register template

@@ -142,6 +142,19 @@ app.post("/register", function(req, res) {
   });
 });
 
+// Show Login Form
+app.get("/login", function(req, res) {
+  res.render("login");
+});
+
+// Handling Login Logic
+app.post("/login", passport.authenticate("local", 
+  {
+    successRedirect: "/campgrounds",
+    failureRedirect: "/login"
+  }), function(req, res) {
+});
+
 
 // Starts server on Port: 3000
 app.listen(3000, function() {

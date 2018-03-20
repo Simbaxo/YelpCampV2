@@ -55,6 +55,17 @@ router.get("/:id", function (req, res) {
   });
 });
 
+// EDIT CAMPGROUND ROUTE - User can edit Campground
+router.get("/:id/edit", function(req, res) {
+  Campground.findById(req.params.id, function(err, foundCampground) {
+    if(err) {
+      res.redirect("/campgrounds")
+    } else {
+      res.render("campgrounds/edit", {campground: foundCampground});
+    }
+  });
+});
+
 // Is User Logged In Logic (middleware)
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

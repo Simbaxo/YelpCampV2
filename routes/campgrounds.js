@@ -66,6 +66,19 @@ router.get("/:id/edit", function(req, res) {
   });
 });
 
+// UPDATE CAMPGROUND ROUTE - User can update Campground
+router.put("/:id", function (req, res) {
+  // find and update the correct campground
+  Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground) {
+    if(err) {
+      res.redirect("/campgrounds");
+    } else {
+      // redirect to show page
+      res.redirect("/campgrounds/" + req.params.id);
+    }
+  });
+});
+
 // Is User Logged In Logic (middleware)
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

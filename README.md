@@ -127,3 +127,8 @@ Each Campground has:
 ### Deleting Comments
 * Add Destroy route for comments
 * Add Delete button
+
+### Authorization - Comments
+* User can only edit his/her comments
+* User can only delete his/her comments
+* Hide/show edit and delete buttons

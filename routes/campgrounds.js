@@ -79,6 +79,17 @@ router.put("/:id", function (req, res) {
   });
 });
 
+// DESTROY CAMPGROUND ROUTE - User can delete Campground
+router.delete("/:id", function(req, res) {
+  Campground.findByIdAndRemove(req.params.id, function(err) {
+    if(err) {
+      res.redirect("/campgrounds");
+    } else {
+      res.redirect("/campgrounds");
+    }
+  });
+});
+
 // Is User Logged In Logic (middleware)
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

@@ -132,3 +132,4 @@ Each Campground has:
 * User can only edit his/her comments
 * User can only delete his/her comments
 * Hide/show edit and delete buttons
+* Refactor Middleware

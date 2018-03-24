@@ -137,3 +137,12 @@ Each Campground has:
 ### Adding in Flash!
 * Install and configure connect-flash
 * Add bootstrap alerts to header
+
+### Full Screen Background Image Slider
+* Create a full screen background image slider that uses a crossfade effect to transition between images
+* We'll use 5 images with 10 second intervals for a 50 second animation cycle
+
+### Dynamic Price Feature
+* Add price to campground model as a String datatype
+* Add price to views/campgrounds/new.ejs and views/campgrounds/edit.ejs (new and edit forms)
+* Add price to views/camprounds/show.ejs (campground show page)

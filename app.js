@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express        = require("express"),
       app            = express(),
       bodyParser     = require("body-parser"),
@@ -9,20 +11,15 @@ const express        = require("express"),
       Campground     = require("./models/campground"),
       Comment        = require("./models/comment"),
       User           = require("./models/user"),
-      seedDB         = require("./seeds"),
-      variables      = require('dotenv').config();
+      seedDB         = require("./seeds");
 
 // Requring Routes      
 const commentRoutes    = require("./routes/comments"),
       campgroundRoutes = require("./routes/campgrounds"),
       indexRoutes       = require("./routes/index");
 
-// console.log(process.env.DATABASEURL);      
-// mongoose.connect(process.env.DATABASEURL);
-mongoose.connect("mongodb://localhost/yelp_camp");
-// mongoose.connect("mongodb://Simba:Mena@ds129469.mlab.com:29469/yelpcampv2");
-
-
+const url = process.env.DATABASEURL;
+mongoose.connect(url);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));

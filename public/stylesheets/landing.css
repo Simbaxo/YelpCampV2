@@ -40,26 +40,26 @@ body {
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url(http://i.imgur.com/K3mPv14.jpg)
+  background-image: url(http://res.cloudinary.com/simba/image/upload/v1522466885/K3mPv14_bjxq7u.jpg)
 }
 
 .slideshow li:nth-child(2) {
-  background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+  background-image: url(http://res.cloudinary.com/simba/image/upload/v1522466981/emvhOnb_wzrlzx.jpg);
   animation-delay: 10s;
 }
 
 .slideshow li:nth-child(3) {
-  background-image: url(http://i.imgur.com/emvhOnb.jpg);
+  background-image: url(http://res.cloudinary.com/simba/image/upload/v1522466981/SBEmFpv_jftw17.jpg);
   animation-delay: 20s;
 }
 
 .slideshow li:nth-child(4) {
-  background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+  background-image: url(http://res.cloudinary.com/simba/image/upload/v1522466981/TVGe0Ef_krjlh8.jpg);
   animation-delay: 30s;
 }
 
 .slideshow li:nth-child(5) {
-  background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+  background-image: url(http://res.cloudinary.com/simba/image/upload/v1522466982/2LSMCmJ_xxfm2g.jpg);
   animation-delay: 40s;
 }
 

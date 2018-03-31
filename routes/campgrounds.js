@@ -4,14 +4,15 @@ const Campground = require("../models/campground");
 const middleware = require("../middleware");
 const NodeGeocoder = require('node-geocoder');
 
-var options = {
+// Google Maps
+let options = {
   provider: 'google',
   httpAdapter: 'https',
   apiKey: process.env.GEOCODER_API_KEY,
   formatter: null
 };
 
-var geocoder = NodeGeocoder(options);
+let geocoder = NodeGeocoder(options);
 
 // INDEX ROUTE - Shows All The Campgrounds
 router.get("/", function (req, res) {
@@ -26,7 +27,7 @@ router.get("/", function (req, res) {
 });
 
 // CREATE ROUTE - Create a New Campground
-router.post("/", middleware.isLoggedIn, function (req, res) {
+router.post("/", middleware.isLoggedIn, middleware.isSafe, function (req, res) {
   // get data from form and add to campgrounds array
   let name = req.body.name;
   let image = req.body.image;
@@ -86,7 +87,7 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) 
 });
 
 // UPDATE CAMPGROUND ROUTE - User can update Campground
-router.put("/:id", middleware.checkCampgroundOwnership, function (req, res) {
+router.put("/:id", middleware.checkCampgroundOwnership, middleware.isSafe, function (req, res) {
   geocoder.geocode(req.body.location, function (err, data) {
     if (err || !data.length) {
       req.flash('error', 'Invalid address');
